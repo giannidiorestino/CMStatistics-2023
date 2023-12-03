@@ -224,7 +224,7 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 \end{itemize}
 \end{frame}
 
-\begin{frame}[plain]\small\frametitle{Affine statistical bundle}
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Affine statistical bundle}
 \begin{itemize}
     \item The \emph{affine statistical bundle} is a structure that describes the joint geometry of probabilities and random variables. This justifies the adjective "statistical".
     \item The geometry is affine in the sense of Weyl's axioms. We modify the original definition to allow for fibres depending on the base point.
@@ -255,42 +255,37 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
     \begin{multline*}
       \left(\log \frac q p - \expectat p {\log \frac q p}\right) + \etransport q p \left(\log \frac r q - \expectat q {\log \frac r q}\right) = \\   \left(\log \frac q p - \expectat p {\log \frac q p}\right) + \left(\log \frac r q - \expectat p {\log \frac r q}\right) = \\ \log \frac r p - \expectat p {\log \frac r p} \ . 
     \end{multline*}
-\item The inverse chart (the patch) $s_p^{-1}$ is defined on all of $\Bspaceat p$ by
+\item The inverse chart (the patch) $s_p^{-1}$ is defined on all of the fibre $\expfibreat p {\opensimplexon \Omega}$ by
   \begin{equation*}
-    s^{-1}_p(v) = \boxed{\expof{v - K_p(v)} \cdot p} = e_p(v) \ , \quad K_p(v) = \log \expectat p {\euler^v} \ .
+    s^{-1}_p(v) = \expof{v - K_p(v)} \cdot p = e_p(v) \ , \quad K_p(v) = \log \expectat p {\euler^v} \ .
   \end{equation*}
 \item The \emph{cumulant functional}
 \begin{equation*}
-   K_p \colon  \eBspace p \ni v \mapsto K_p(v) = \log \expectat p {\euler^v}
-\end{equation*}has several important properties. It is an expression of the \emph{Kullback-Leibler divergence} as a function of the second variable:
+   K_p \colon \expfibreat p {\opensimplexon \Omega} \ni v \mapsto K_p(v) = \log \expectat p {\euler^v}
+ \end{equation*}
+ has several important properties.
+ \item It is an expression in the affine chart of the \emph{Kullback-Leibler divergence} as a function of the second variable. If $s_p(q) = v$, then
 \begin{equation*}
-    \KL p q = \expectat p {\log \frac p q} = \expectat p {\log \frac p {\expof{v - K_p(v)} \cdot p}} = K_p(v) \ ,
+    \KL p q = \expectat p {\log \frac p q} = \expectat p {\log \frac p {\expof{v - K_p(v)} \cdot p}} = K_p(v) \ .
 \end{equation*}
-that is,
-    \emph{\begin{equation*}
-      \boxed{K_p(v) = \KL p {e_p(v)} \qquad K_p(s_p(q)) = \KL p q} \ .
-    \end{equation*}}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Mixture chart and transport}
-\begin{block}{}
-      We define the \emph{mixture displacement} on $\opensimplexon X$ by
+\begin{itemize}
+\item  We define the \emph{mixture displacement} from $p \in \opensimplexon \Omega$ to $q \in \opensimplexon \Omega$ on by
        \begin{equation*}
-      \opensimplexon X \times \opensimplexon X \ni (p,q) \mapsto \eta_p(q) = \frac q p - 1 \in \Bspaceat p \ ,
+   (p,q) \mapsto \eta_p(q) = \frac q p - 1 \in \Bspaceat p = \expfibreat p {\opensimplexon \Omega} \ ,
     \end{equation*}
-    and the \emph{mixture transport} by
+    and the \emph{mixture transport} between fibres wby
     \begin{equation*}
-      \mtransport p q \colon \Bspaceat p \ni v \mapsto \frac p q \, v \in \Bspaceat q \ .
+      \mtransport p q \colon \expfibreat p {\opensimplexon \Omega} \ni v \mapsto \frac p q \, v \in \expfibreat p {\opensimplexon \Omega} \ .
     \end{equation*}
-\end{block}
-
-\begin{itemize}  
-\item The (generalized) parallelogram law is
+\item The (generalized) parallelogram law holds true
   \begin{equation*}
  \left(\frac q p -1\right) + \frac q p \left(\frac r q -1\right) = \left(\frac r p -1\right) \ .
 \end{equation*}
-\item The inverse chart is defined for all $v > 1$, $w \in \Bspaceat p$ by
+\item The inverse chart is defined for all $v > -1$, $w \in \Bspaceat p$ by
   \begin{equation*}
     \eta^{-1}_p(v) =  (1+v) \cdot p \ .
   \end{equation*}
