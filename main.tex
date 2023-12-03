@@ -17,7 +17,7 @@
 \usepackage{cancel}
 \usepackage{comment}
 %\usepackage{etex}
-\usepackage{macros}
+%\usepackage{macros}
 \usepackage{mathscinet}
 \usepackage{mathtools}
 \usepackage{rotating}
@@ -41,12 +41,13 @@
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\mDeriv}{D_{\text{m}}}
 
-\newcommand{\Bspaceat}[1]{B_{#1}}
-\newcommand{\Bspace}[1]{B_{#1}}
-\newcommand{\Ccs}[1]{C_0\left(#1\right)}
-\newcommand{\Cexp}[1]{C_0^{(\cosh-1)}\left(#1\right)}
-\newcommand{\Cinfcs}[1]{C_0^\infty\left(#1\right)}
-\newcommand{\Cinfp}[1]{C_{\mathrm{p}}^\infty\left(#1\right)}
+%\newcommand{\Bspaceat}[1]{B_{#1}}
+%\newcommand{\Bspace}[1]{B_{#1}}
+%\newcommand{\Ccs}[1]{C_0\left(#1\right)}
+%\newcommand{\Cexp}[1]{C_0^{(\cosh-1)}\left(#1\right)}
+%\newcommand{\Cinfcs}[1]{C_0^\infty\left(#1\right)}
+%\newcommand{\Cinfp}[1]{C_{\mathrm{p}}^\infty\left(#1\right)}
+%\newcommand{\condexpectat}[3]{{\Expectation}_{#1}\left[#2 \middle| #3\right]}
 \newcommand{\Derivby}[1]{\frac{\Deriv}{d#1}}
 \newcommand{\Lexp}[1]{L^{(\cosh-1)}\left(#1\right)}
 \newcommand{\LlogL}[1]{L^{(\cosh-1)_*}\left(#1\right)}
@@ -54,14 +55,18 @@
 \newcommand{\WCexp}[1]{C_0^{1,(\cosh-1)}\left( #1 \right)}
 \newcommand{\Wexp}[1]{W^{1,(\cosh-1)}\left(#1\right)}
 \newcommand{\WlogL}[1]{W^{1,(\cosh-1)_*}\left(#1\right)}
+\newcommand{\avalof}[1]{\left\vert#1\right\vert}
 \newcommand{\bgamma}{{\bm \gamma}}
 \newcommand{\bnabla}{{\bm\nabla}}
-\newcommand{\condexpectat}[3]{{\Expectation}_{#1}\left[#2 \middle| #3\right]}
+\newcommand{\condexpat}[3]{\mathbb E_{#1}\left(#2 \middle| #3\right)}
 \newcommand{\displacement}{\operatorname{\mathbb S}}
 \newcommand{\eBspace}[1]{B_{#1}}
 \newcommand{\eDerivby}[1]{\frac{\eDeriv}{d#1}}
 \newcommand{\ehessianat}[2]{\prescript{e}{}\Hessian_{#1}{#2}}
-\newcommand{\expbundle}{S\Maxexp}
+\newcommand{\etransport}[2]{\prescript{\text{e}}{} {\mathbb U} _ {#1} ^ {#2}}
+\newcommand{\expbundleat}[1]{S#1}
+\newcommand{\expectat}[2]{\mathbb E_{#1}\left[#2\right]}
+\newcommand{\expfibreat}[2]{S_{#1}#2}
 \newcommand{\fullbundleat}[1]{\prescript{1}{}S^1\maxexpat{#1}}
 \newcommand{\gaussdensity}{\gamma}
 \newcommand{\gaussint}[2]{\int{#1} \gaussdensity(#2) \ d#2 \ }
@@ -76,17 +81,20 @@
 \newcommand{\model}{\mathcal M}
 \newcommand{\openplan}[2]{\overset{\circ}\Pi\left(#1,#2\right)}
 \newcommand{\opensimplexat}[1]{\mathcal P_>\left(#1\right)}
-\newcommand{\preBspaceat}[1]{\prescript{*}{}B_{#1}}
-\newcommand{\preBspace}[1]{\prescript{*}{}B_{#1}}
+\newcommand{\opensimplexon}[1]{\mathcal P_>\left(#1\right)}
+%\newcommand{\preBspaceat}[1]{\prescript{*}{}B_{#1}}
+%\newcommand{\preBspace}[1]{\prescript{*}{}B_{#1}}
+\newcommand{\reals}{\mathbb{R}}
 \newcommand{\rosso}[1]{\textcolor{red}{#1}}
 \newcommand{\sdomainat}[1]{\sdomain_{#1}}
 \newcommand{\sdomain}{\mathcal S}
+\newcommand{\setof}[2]{\left\{#1 \, \middle| \, #2 \right\}}
+\newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\simplexon}[1]{\mathcal P\left(#1\right)}
 \newcommand{\tensorat}[3]{\prescript{#1}{}S^{#2}\maxexpat{#3}}
-\newcommand{\opensimplexon}[1]{\mathcal P_>\left(#1\right)}
 
 \renewcommand{\emph}{\rosso}
-\renewcommand{\transport}[2]{{\mathbb U} _ {#1} ^ {#2}}
+\newcommand{\transport}[2]{{\mathbb U} _ {#1} ^ {#2}}
 
 %
 %% end Gianni's macros
@@ -203,10 +211,10 @@ The author acknowledges the support of de Castro Statistics and  INdAM-GNAMPA.
     \end{equation*}
     with $f_0 \in H_0$, $(f_1\circ X_1 + f_2\circ X_2) \in H_1$, and $f_{12}\circ (X_1,X_2) \in H_2$. 
     \item Let $f \mapsto \hajekof q f$ be the orthogonal projection of $L^2(q)$ onto $H_1$, the \emph{Hajek projection}.
-    \item The orthogonal decomposition is computed as
+    \item The orthogonal decomposition of $f \in L^2(q)$ is computed as
     \begin{equation*}
-        f = \Expectation_q f \oplus \hajekof q f \oplus (\operatorname I  - 
- \Expectation_q - \hajekof q) f \ .
+        f = \expectat q f \oplus \hajekof q f \oplus (\operatorname I  - 
+ \mathbb E_q - \hajekof q) f \ .
     \end{equation*}
     \item We want to compute the Hajek projection. It is a least square problem
     \begin{align*}
@@ -220,67 +228,36 @@ The author acknowledges the support of de Castro Statistics and  INdAM-GNAMPA.
             \condexpat q {f}{X_2} &= f_0 + \condexpat q {f_1 \circ X_1}{X_2} + f_2\circ X_2
         \end{align*}
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}[plain]\small\frametitle{Affine statistical bundle}
 \begin{itemize}
     \item The \emph{affine statistical bundle} is a structure that describes the joint geometry of probabilities and random variables. This justifies the adjective "statistical".
-    \item The geometry is affine in the sense of Weyl's axioms.\footnote{\tiny The original definition of \bibentry{weyl:1952} is reproduced in the monograph \S I.2 of \bibentry{nomizu|sasaki:94}. See also the textbook \cite{berger:1994}}
-    We modify the original definition to allow for fibres depending on the base point.
+    \item The geometry is affine in the sense of Weyl's axioms. We modify the original definition to allow for fibres depending on the base point.
 \item The affine charts define a special atlas whose change-of-charts mappings are affine.
+\item We consider the set of couples $(q,v)$ such that $q$ is a positive probability function, $q \in \opensimplexon \Omega$, and $v$ is a random variable whose $q$-expectation is zero, $v \in L^2_0(q)$. The vector space $L_0^2(q)$ is the \emph{fibre} at $q$.
 \end{itemize} 
 
 \begin{block}{Affine statistical bundle}
     \begin{equation*}
-        S\opensimplexon X = \setof{(q,v)}{q \in \opensimplexon X, \expectat q v =0}
+        S\opensimplexon \Omega = \setof{(q,v)}{q \in \opensimplexon \Omega, v \in L^2_0(q)}
     \end{equation*}
 \end{block}
 \end{frame}
 
-\begin{frame}[plain]\frametitle{Tangent bundle of the positive orthant of the sphere}
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Exponential chart and transport}
 
-\includegraphics[width=\textwidth]{exercise/positive-orthant-cropped.pdf}
+  \begin{itemize}
 
-\end{frame}
-
-\begin{frame}[plain]\frametitle{Tangent bundle as an atlas}
-
-\includegraphics[width=\textwidth]{exercise/atlas-cropped.pdf}
-
-\end{frame}
-
-\begin{frame}[plain]\frametitle{Square-root-likelihood}
-
-\includegraphics[width=\textwidth]{exercise/square-root-cropped.pdf}
-
-\end{frame}
-
-\begin{frame}[plain]\frametitle{Fisher-Cramer-Rao trick}
-
-\includegraphics[width=\textwidth]{exercise/fisher-cramer-rao.pdf}
-
-\end{frame}
-
-\begin{frame}[plain]
-
-  \includegraphics[height=.8\textheight]{exercise/scheme.pdf}
-  
-\end{frame}
-
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Exponential affine bundle}
-
-\begin{block}{}We define the \emph{exponential displacement} on $\opensimplexon X$ by
+   \item We define the \emph{exponential displacement} from $p \in \opensimplexon \Omega$ to $q \in \opensimplexon \Omega$ by
     \begin{equation*}
-      \opensimplexon X \times \opensimplexon X \ni (p,q) \mapsto s_p(q) = \boxed{\log \frac q  p - \expectat p {\log \frac q p}} \in \Bspaceat p \ ,
+(p,q) \mapsto s_p(q) = \log \frac q  p - \expectat p {\log \frac q p} \in L^2_0(p) = \expfibreat p {\opensimplexon \Omega} \ ,
     \end{equation*}
-    and the \emph{exponential transport} between fibers $S_p \opensimplexon X = \eBspace p$, $p \in \opensimplexon X$, by
+    and the \emph{exponential transport} between fibres  by
     \begin{equation*}
-      \etransport p q \colon \Bspaceat p \ni \boxed{ v \mapsto v - \expectat q v } \in \Bspaceat q \ .
+      \etransport q p \colon \expfibreat q {\opensimplexon \Omega} \ni v \mapsto v - \expectat p v \in \expfibreat p {\opensimplexon \Omega} \ .
     \end{equation*}
-    \end{block}
-    
-  \begin{itemize}  \item The (generalized) parallelogram law holds:
+\item The parallelogram law holds true:
     \begin{multline*}
       \left(\log \frac q p - \expectat p {\log \frac q p}\right) + \etransport q p \left(\log \frac r q - \expectat q {\log \frac r q}\right) = \\   \left(\log \frac q p - \expectat p {\log \frac q p}\right) + \left(\log \frac r q - \expectat p {\log \frac r q}\right) = \\ \log \frac r p - \expectat p {\log \frac r p} \ . 
     \end{multline*}
@@ -300,19 +277,9 @@ that is,
       \boxed{K_p(v) = \KL p {e_p(v)} \qquad K_p(s_p(q)) = \KL p q} \ .
     \end{equation*}}
 \end{itemize}
-
-\begin{block}{Derivatives of the cumulant function}
-  \begin{enumerate}
-     \item \emph{$d K_p(v)[h] = \expectat {e_p(v)} {h} = \scalarat {p} {\frac{e_p(v)}{p}-1}{h}$}
-
-    \item \emph{$d^2 K_p(v) [h,k] = \covat {e_p(v)} h k = \scalarat {e_p(v)} {\etransport p {e_p(v)} h}{\etransport p {e_p(v)} k} = \scalarat p h {\left(\mtransport {e_p(v)} p \etransport p {e_p(v)}\right) k}$}.
-
-    \item \emph{$d^3 K_p(v) [h_1,h_2,h_3] = \expectat {e_p(v)}{\prod_{j=1}^3 \left(\etransport p {e_p(v)} h_j\right)}$}
-    \end{enumerate}
-\end{block}
 \end{frame}
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Mixture affine bundle}
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Mixture chart and transport}
 \begin{block}{}
       We define the \emph{mixture displacement} on $\opensimplexon X$ by
        \begin{equation*}
@@ -565,7 +532,7 @@ Cf Pistone-Rapallo-Rogantin:2021
 \begin{multline*} 0 = \derivby t \expectat {q_1} {f_1} =  \derivby t \expectat {q(t)} {f_1\circ X_1} = \\ \scalarat {q(t)}  {f_1 \circ X_1 - \expectat {q(t)} {f_1\circ X_1}} {\velocity q(t)} = \expectat {q(t)} {f_1\circ X_1 \velocity q(t)} \ , \end{multline*}  Similarly on the other projection.
 \item It follows that
 \begin{equation*}
-\boxed{\condexpectat {q(t)} {\velocity q(t)} {X_1} = 0 \quad \text{and} \quad \condexpectat {q(t)} {\velocity q(t)} {X_2} = 0}
+\boxed{\condexpat {q(t)} {\velocity q(t)} {X_1} = 0 \quad \text{and} \quad \condexpat {q(t)} {\velocity q(t)} {X_2} = 0}
 \end{equation*}
 that is, \emph{if $t \mapsto q(t) \in \openplan{q_1}{q_2}$, then $\velocity q(t)$ is an interaction at $q(t)$, $\velocity q(t) \in H_2(q(t))$}.
 \item Conversely, let $q \in \openplan{q_1}{q_2}$ and $c_{12} \in H(q)$. The curve $t \mapsto (1+tc) \cdot q$ is defined in a neighborhood of 0. The margins are correct,
@@ -671,6 +638,36 @@ then $c$ equals the sum of two functions in one variable on the support of $\hat
 \item
 We expect any solution $t \mapsto q(t)$ of the gradient flow equation to converge to a plan $\bar q = \lim_{t \to \infty} q(t) \in \Pi(q_1,q_2)$ such that $\expectat {\bar q} c$ is the value of the Kantorovich optimal transport problem. The form of the gradient is compatible with the classical result in OT.
 \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]\frametitle{Tangent bundle of the positive orthant of the sphere}
+
+\includegraphics[width=\textwidth]{exercise/positive-orthant-cropped.pdf}
+
+\end{frame}
+
+\begin{frame}[plain]\frametitle{Tangent bundle as an atlas}
+
+\includegraphics[width=\textwidth]{exercise/atlas-cropped.pdf}
+
+\end{frame}
+
+\begin{frame}[plain]\frametitle{Square-root-likelihood}
+
+\includegraphics[width=\textwidth]{exercise/square-root-cropped.pdf}
+
+\end{frame}
+
+\begin{frame}[plain]\frametitle{Fisher-Cramer-Rao trick}
+
+\includegraphics[width=\textwidth]{exercise/fisher-cramer-rao.pdf}
+
+\end{frame}
+
+\begin{frame}[plain]
+
+  \includegraphics[height=.8\textheight]{exercise/scheme.pdf}
+  
 \end{frame}
 
 \begin{frame}[plain]\frametitle{Exercise: conditional expectation}
