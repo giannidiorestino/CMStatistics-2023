@@ -8,14 +8,14 @@
 %
 \setbeamercolor{block body}{bg=AliceBlue}
 
-\usepackage[all]{xy}
+%\usepackage[all]{xy}
 \usepackage{accents}
 \usepackage{amsmath,amssymb}
 \usepackage{array}
 \usepackage{bibentry}
 \usepackage{bm}
 \usepackage{cancel}
-\usepackage{comment}
+%\usepackage{comment}
 %\usepackage{etex}
 %\usepackage{macros}
 \usepackage{mathscinet}
@@ -29,7 +29,7 @@
     filecolor=magenta,      
     urlcolor=cyan
     }
-\renewcommand{\newblock}{\relax} %% ??????????
+%\renewcommand{\newblock}{\relax} %% ??????????
 
 %
 %% Gianni macros
@@ -48,6 +48,17 @@
 %\newcommand{\Cinfcs}[1]{C_0^\infty\left(#1\right)}
 %\newcommand{\Cinfp}[1]{C_{\mathrm{p}}^\infty\left(#1\right)}
 %\newcommand{\condexpectat}[3]{{\Expectation}_{#1}\left[#2 \middle| #3\right]}
+\newcommand{\KL}[2]{\operatorname{D}\left(#1\,\Vert#2\right)}
+\newcommand{\mtransport}[2]{\prescript{\text{m}}{} {\mathbb U} _ {#1} ^ {#2}}
+\newcommand{\maxexpat}[1]{\Maxexp\left(#1\right)}
+\newcommand{\velocity}[1]{\accentset{\star}{#1}}
+\newcommand{\derivby}[1]{\frac{d}{d#1}}
+\newcommand{\scalarat}[3]{\left\langle#2,#3\right\rangle_{#1}}
+\DeclareMathOperator{\Maxexp}{\mathcal E}
+\newcommand{\logof}[1]{\log\left(#1\right)}
+\newcommand{\euler}{\mathrm{e}}
+\newcommand{\expof}[1]{\exp\left(#1\right)}
+\newcommand{\Bspaceat}[1]{L^2_0(#1)}
 \newcommand{\Derivby}[1]{\frac{\Deriv}{d#1}}
 \newcommand{\Lexp}[1]{L^{(\cosh-1)}\left(#1\right)}
 \newcommand{\LlogL}[1]{L^{(\cosh-1)_*}\left(#1\right)}
@@ -551,13 +562,13 @@ and the velocity at 0 is $c_{12}$,
 
 \item The orthogonal splitting of the statistical bundle is
 \begin{equation*}
-    \expfiberat q {\Omega_1 \times \Omega_2} = S_q \openplan{q_1}{q_2} \oplus_q \hajekof{q}\expfiberat q {\Omega_1 \times \Omega_2},
+    \expfibreat q {\Omega_1 \times \Omega_2} = S_q \openplan{q_1}{q_2} \oplus_q \hajekof{q}\expfibreat q {\Omega_1 \times \Omega_2},
 \end{equation*}
 where $q_1, q_2$ are the margins of $q$.
 
 \item Notice that the complement fiber is $H_1(q)$,
 \begin{multline*}
-  \hajekof{q}\expfiberat q {\Omega_1 \times \Omega_2} = \\ \setof {f_1 \circ X_1 + f_2 \circ X_2}{\expectat {q_1}{f_1} = \expectat {q_2}{X_2} = 0} \ ,
+  \hajekof{q}\expfibreat q {\Omega_1 \times \Omega_2} = \\ \setof {f_1 \circ X_1 + f_2 \circ X_2}{\expectat {q_1}{f_1} = \expectat {q_2}{X_2} = 0} \ ,
  \end{multline*}
   which is in turn related to the \emph{exponential families of additive statistics} 
   \begin{equation*}
