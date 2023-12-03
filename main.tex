@@ -1,23 +1,19 @@
 \RequirePackage{etex} 
 \documentclass[xcolor=svgnames]{beamer}
-%
 \usetheme{Singapore}
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}[frame number]
-
-%
+\setbeamertemplate{footline}{framenumber}
+%\setbeamertemplate{page number in head/foot}[framenumber]
+%\setbeamertemplate{page number in head/foot}[noframenumbering]
+%\setbeamertemplate{footline}[frame number]
 \setbeamercolor{block body}{bg=AliceBlue}
 
-%\usepackage[all]{xy}
 \usepackage{accents}
 \usepackage{amsmath,amssymb}
 \usepackage{array}
 \usepackage{bibentry}
 \usepackage{bm}
 \usepackage{cancel}
-%\usepackage{comment}
-%\usepackage{etex}
-%\usepackage{macros}
 \usepackage{mathscinet}
 \usepackage{mathtools}
 \usepackage{rotating}
@@ -29,37 +25,19 @@
     filecolor=magenta,      
     urlcolor=cyan
     }
-%\renewcommand{\newblock}{\relax} %% ??????????
 
-%
-%% Gianni macros
-%
+    %% Gianni macros
 
 \DeclareMathOperator{\Hajek}{Hajek}
+\DeclareMathOperator{\Maxexp}{\mathcal E}
 \DeclareMathOperator{\M}{\mathcal M}
 \DeclareMathOperator{\eDeriv}{D_{\text{e}}}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\mDeriv}{D_{\text{m}}}
 
-%\newcommand{\Bspaceat}[1]{B_{#1}}
-%\newcommand{\Bspace}[1]{B_{#1}}
-%\newcommand{\Ccs}[1]{C_0\left(#1\right)}
-%\newcommand{\Cexp}[1]{C_0^{(\cosh-1)}\left(#1\right)}
-%\newcommand{\Cinfcs}[1]{C_0^\infty\left(#1\right)}
-%\newcommand{\Cinfp}[1]{C_{\mathrm{p}}^\infty\left(#1\right)}
-%\newcommand{\condexpectat}[3]{{\Expectation}_{#1}\left[#2 \middle| #3\right]}
-\newcommand{\KL}[2]{\operatorname{D}\left(#1\,\Vert#2\right)}
-\newcommand{\mtransport}[2]{\prescript{\text{m}}{} {\mathbb U} _ {#1} ^ {#2}}
-\newcommand{\maxexpat}[1]{\Maxexp\left(#1\right)}
-\newcommand{\velocity}[1]{\accentset{\star}{#1}}
-\newcommand{\derivby}[1]{\frac{d}{d#1}}
-\newcommand{\scalarat}[3]{\left\langle#2,#3\right\rangle_{#1}}
-\DeclareMathOperator{\Maxexp}{\mathcal E}
-\newcommand{\logof}[1]{\log\left(#1\right)}
-\newcommand{\euler}{\mathrm{e}}
-\newcommand{\expof}[1]{\exp\left(#1\right)}
 \newcommand{\Bspaceat}[1]{L^2_0(#1)}
 \newcommand{\Derivby}[1]{\frac{\Deriv}{d#1}}
+\newcommand{\KL}[2]{\operatorname{D}\left(#1\,\Vert#2\right)}
 \newcommand{\Lexp}[1]{L^{(\cosh-1)}\left(#1\right)}
 \newcommand{\LlogL}[1]{L^{(\cosh-1)_*}\left(#1\right)}
 \newcommand{\TMaxexp}{\operatorname{T}\Maxexp}
@@ -70,42 +48,47 @@
 \newcommand{\bgamma}{{\bm \gamma}}
 \newcommand{\bnabla}{{\bm\nabla}}
 \newcommand{\condexpat}[3]{\mathbb E_{#1}\left(#2 \middle| #3\right)}
+\newcommand{\derivby}[1]{\frac{d}{d#1}}
 \newcommand{\displacement}{\operatorname{\mathbb S}}
 \newcommand{\eBspace}[1]{B_{#1}}
 \newcommand{\eDerivby}[1]{\frac{\eDeriv}{d#1}}
 \newcommand{\ehessianat}[2]{\prescript{e}{}\Hessian_{#1}{#2}}
 \newcommand{\etransport}[2]{\prescript{\text{e}}{} {\mathbb U} _ {#1} ^ {#2}}
+\newcommand{\euler}{\mathrm{e}}
 \newcommand{\expbundleat}[1]{S#1}
 \newcommand{\expectat}[2]{\mathbb E_{#1}\left[#2\right]}
 \newcommand{\expfibreat}[2]{S_{#1}#2}
+\newcommand{\expof}[1]{\exp\left(#1\right)}
 \newcommand{\fullbundleat}[1]{\prescript{1}{}S^1\maxexpat{#1}}
 \newcommand{\gaussdensity}{\gamma}
 \newcommand{\gaussint}[2]{\int{#1} \gaussdensity(#2) \ d#2 \ }
 \newcommand{\hajekof}[1]{\Hajek\left(#1\right)}
 \newcommand{\hullof}[1]{\operatorname{hull}\left(#1\right)}
+\newcommand{\logof}[1]{\log\left(#1\right)}
 \newcommand{\mDerivby}[1]{\frac{\mDeriv}{d#1}}
+\newcommand{\maxexpat}[1]{\Maxexp\left(#1\right)}
 \newcommand{\maxmix}[1]{\prescript{*}{}{\Maxexp\left(#1\right)}}
 \newcommand{\mhessianat}[2]{\prescript{m}{}\Hessian_{#1}{#2}}
 \newcommand{\mixbundleat}[1]{\prescript{*}{}S\maxexpat{#1}}
 \newcommand{\mixbundle}{\prescript{*}{}S\Maxexp}
 \newcommand{\mixfiberat}[2]{{}^*S_{#1}\maxexpat{#2}}
 \newcommand{\model}{\mathcal M}
+\newcommand{\mtransport}[2]{\prescript{\text{m}}{} {\mathbb U} _ {#1} ^ {#2}}
 \newcommand{\openplan}[2]{\overset{\circ}\Pi\left(#1,#2\right)}
 \newcommand{\opensimplexat}[1]{\mathcal P_>\left(#1\right)}
 \newcommand{\opensimplexon}[1]{\mathcal P_>\left(#1\right)}
-%\newcommand{\preBspaceat}[1]{\prescript{*}{}B_{#1}}
-%\newcommand{\preBspace}[1]{\prescript{*}{}B_{#1}}
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\rosso}[1]{\textcolor{red}{#1}}
+\newcommand{\scalarat}[3]{\left\langle#2,#3\right\rangle_{#1}}
 \newcommand{\sdomainat}[1]{\sdomain_{#1}}
 \newcommand{\sdomain}{\mathcal S}
 \newcommand{\setof}[2]{\left\{#1 \, \middle| \, #2 \right\}}
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\simplexon}[1]{\mathcal P\left(#1\right)}
 \newcommand{\tensorat}[3]{\prescript{#1}{}S^{#2}\maxexpat{#3}}
-
-\renewcommand{\emph}{\rosso}
 \newcommand{\transport}[2]{{\mathbb U} _ {#1} ^ {#2}}
+\newcommand{\velocity}[1]{\accentset{\star}{#1}}
+\renewcommand{\emph}{\rosso}
 
 %
 %% end Gianni's macros
@@ -132,7 +115,7 @@ e-mail: \url{giovanni.pistone@carloalberto.org}
 
 orcidID: 0000-0003-2841-788X
 
-The author acknowledges the support of de Castro Statistics and  INdAM-GNAMPA.
+The author acknowledges the support of deCastro Statistics. He is a member of INdAM-GNAMPA and UMI AI\&ML\&MAT.
 
 \nobibliography{tutto}%
 
