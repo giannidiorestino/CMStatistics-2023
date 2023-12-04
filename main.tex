@@ -308,35 +308,6 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 \end{frame}
 
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Aside on Linear Programming LP}
-
-\begin{itemize}  \item See \S IV.8 in \bibentry{barvinok:2002}
-\end{itemize}
-
-  \begin{itemize}
-  \item The \emph{primal problem in canonical form} is
-    \begin{align*}
-      \text{Find} \quad c =& \inf \sum_x c(x) r(x) \\
-      \text{Subject to} \quad &\sum_x A(y,x) r(x) = \beta(y) \quad y \in Y \\
-      &r(x) \geq 0
-    \end{align*}
-  \item $r$ is the \emph{primal plan}
-  \item a plan is \emph{feasible} if the constraints hold
-  \end{itemize}
-
-  \begin{itemize}
-  \item The \emph{dual problem in standard form} is
-    \begin{align*}
-      \text{Find} \quad \beta =& \sup \sum_y \beta(y) \lambda(y) \\
-      \text{Subject to} \quad &\sum_y A(y,x) \lambda(y) \leq c(x) 
-    \end{align*}
-  \item $\lambda$ is the \emph{dual plan}
-  \end{itemize}
-
-  \begin{block}{Strong duality theorem}
-  If a feasible primal plan exists, then $c = \beta$. If moreover, $c > -\infty$, then primal optimal and dual optimal plans exist.  
-  \end{block}
-\end{frame}
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Fixed margins}
 \begin{itemize}
@@ -426,66 +397,6 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 
 \item Basic examples of sub-manifolds of affine statistical manifolds are mixture models and exponential families, to be discussed elsewhere. Here we discuss the set of couplings or transport plans.
  \end{itemize}
-\end{frame}
-
- \begin{frame}[plain,allowframebreaks]\small\frametitle{Example} 
- 
- %\begin{figure}
-  \begin{tabular}{ccc}
-    \begin{tikzpicture}[scale=1.7,baseline = (current bounding box.center)]
-\node (n00) at (1,-.5) {$\delta_{11}$};
-\node (n10) at (0,0) {$\delta_{21}$};
-\node (n01) at (2,0) {$\delta_{12}$};
-\node (n11) at (1,1.5) {$\delta_{22}$};
-\node (K1) at (5/6,-1/12) {$\gamma_1$};
-\node (K2) at (5/6,1/4) {$\gamma_2$};
-\draw[thick,dotted] (n01) -- (n10);
-\foreach \from/\to in {n00/n10,n00/n01,n11/n10,n11/n01,n00/n11}
-\draw[thick] (\from) -- (\to);
-\draw [thick,red] (K1) -- (K2); % was: gray, dashed
-\end{tikzpicture} & $\xrightarrow[(X_1,X_2)_{\#}]{}$ &
-    \begin{tikzpicture}[scale=3,baseline = (current bounding box.center)]
-\node (n00) at (0,0) {$\delta_{11}$};
-\node (n10) at (1,0) {$\delta_{12}$};
-\node (n01) at (0,1) {$\delta_{21}$};
-\node (n11) at (1,1) {$\delta_{22}$};
-\foreach \from/\to in {n00/n01,n01/n11,n11/n10,n10/n00}
-\draw[thick] (\from) -- (\to);
-\filldraw [red] (1/2,2/3) circle (1pt); % was: gray
-\end{tikzpicture}
-  \end{tabular}
-  %\caption{
-  %\label{fig:2x2}}
-  %\end{figure}
-
-Cf Pistone-Rapallo-Rogantin:2021
-\begin{itemize}
-\item The sample space is: 
-\begin{equation*}
-  \Omega_1=\Omega_2 = \set{1,2} \quad \Omega_1 \times \Omega_2 = \set{11,12,21,22} 
-\end{equation*}
-\item The margins are:
-\begin{equation*}
-   {\color{red}\bullet} = \left((1/2, 1/2), (2/3, 1/3)\right) = \left((q_1(1),q_1(2)),(q_2(1),q_2(2))\right) 
-\end{equation*}
-
-\item Cf. Exercise 2x2 coupling.
-
-\item The vertexes of the transport polytope are:
-\begin{equation*}
-\gamma_1 = \begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} \quad 
-\gamma_2 = \begin{bmatrix} 1/2 & 0 \\ 1/6 & 1/3 \end{bmatrix}\end{equation*}
-\item The transport polytope is 
-\begin{align*}
- \openplan{q_1}{q_2} &= \setof{(1-t)\begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} + t \begin{bmatrix} 1/2 & 0 \\ 1/6 & 1/3 \end{bmatrix}}{0 < t < 1} \\
- &= \setof{\begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} + t \begin{bmatrix} 1/3 & -1/3 \\ -1/3 & 1/3 \end{bmatrix}}{0 < t < 1}
-\end{align*}
-\item A curve in the transport polytope is 
-\begin{equation*}
-   \gamma \colon t \mapsto \begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} + a(t) \begin{bmatrix} 1/3 & -1/3 \\ -1/3 & 1/3 \end{bmatrix}
-\end{equation*}
-
-\end{itemize}
 \end{frame}
 
   \begin{frame}[plain]\small\frametitle{$\openplan {q_1} {q_2}$ as a sub-manifold of $\maxexpat{\Omega_1 \times \Omega_2}$}
@@ -630,6 +541,98 @@ We expect any solution $t \mapsto q(t)$ of the gradient flow equation to converg
 \end{frame}
 
 \end{document}
+
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Example} 
+ 
+ %\begin{figure}
+  \begin{tabular}{ccc}
+    \begin{tikzpicture}[scale=1.7,baseline = (current bounding box.center)]
+\node (n00) at (1,-.5) {$\delta_{11}$};
+\node (n10) at (0,0) {$\delta_{21}$};
+\node (n01) at (2,0) {$\delta_{12}$};
+\node (n11) at (1,1.5) {$\delta_{22}$};
+\node (K1) at (5/6,-1/12) {$\gamma_1$};
+\node (K2) at (5/6,1/4) {$\gamma_2$};
+\draw[thick,dotted] (n01) -- (n10);
+\foreach \from/\to in {n00/n10,n00/n01,n11/n10,n11/n01,n00/n11}
+\draw[thick] (\from) -- (\to);
+\draw [thick,red] (K1) -- (K2); % was: gray, dashed
+\end{tikzpicture} & $\xrightarrow[(X_1,X_2)_{\#}]{}$ &
+    \begin{tikzpicture}[scale=3,baseline = (current bounding box.center)]
+\node (n00) at (0,0) {$\delta_{11}$};
+\node (n10) at (1,0) {$\delta_{12}$};
+\node (n01) at (0,1) {$\delta_{21}$};
+\node (n11) at (1,1) {$\delta_{22}$};
+\foreach \from/\to in {n00/n01,n01/n11,n11/n10,n10/n00}
+\draw[thick] (\from) -- (\to);
+\filldraw [red] (1/2,2/3) circle (1pt); % was: gray
+\end{tikzpicture}
+  \end{tabular}
+  %\caption{
+  %\label{fig:2x2}}
+  %\end{figure}
+
+Cf Pistone-Rapallo-Rogantin:2021
+\begin{itemize}
+\item The sample space is: 
+\begin{equation*}
+  \Omega_1=\Omega_2 = \set{1,2} \quad \Omega_1 \times \Omega_2 = \set{11,12,21,22} 
+\end{equation*}
+\item The margins are:
+\begin{equation*}
+   {\color{red}\bullet} = \left((1/2, 1/2), (2/3, 1/3)\right) = \left((q_1(1),q_1(2)),(q_2(1),q_2(2))\right) 
+\end{equation*}
+
+\item Cf. Exercise 2x2 coupling.
+
+\item The vertexes of the transport polytope are:
+\begin{equation*}
+\gamma_1 = \begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} \quad 
+\gamma_2 = \begin{bmatrix} 1/2 & 0 \\ 1/6 & 1/3 \end{bmatrix}\end{equation*}
+\item The transport polytope is 
+\begin{align*}
+ \openplan{q_1}{q_2} &= \setof{(1-t)\begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} + t \begin{bmatrix} 1/2 & 0 \\ 1/6 & 1/3 \end{bmatrix}}{0 < t < 1} \\
+ &= \setof{\begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} + t \begin{bmatrix} 1/3 & -1/3 \\ -1/3 & 1/3 \end{bmatrix}}{0 < t < 1}
+\end{align*}
+\item A curve in the transport polytope is 
+\begin{equation*}
+   \gamma \colon t \mapsto \begin{bmatrix} 1/6 & 1/3 \\ 1/2 & 0 \end{bmatrix} + a(t) \begin{bmatrix} 1/3 & -1/3 \\ -1/3 & 1/3 \end{bmatrix}
+\end{equation*}
+
+\end{itemize}
+\end{frame}
+
+ 
+
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Aside on Linear Programming LP}
+
+\begin{itemize}  \item See \S IV.8 in \bibentry{barvinok:2002}
+\end{itemize}
+
+  \begin{itemize}
+  \item The \emph{primal problem in canonical form} is
+    \begin{align*}
+      \text{Find} \quad c =& \inf \sum_x c(x) r(x) \\
+      \text{Subject to} \quad &\sum_x A(y,x) r(x) = \beta(y) \quad y \in Y \\
+      &r(x) \geq 0
+    \end{align*}
+  \item $r$ is the \emph{primal plan}
+  \item a plan is \emph{feasible} if the constraints hold
+  \end{itemize}
+
+  \begin{itemize}
+  \item The \emph{dual problem in standard form} is
+    \begin{align*}
+      \text{Find} \quad \beta =& \sup \sum_y \beta(y) \lambda(y) \\
+      \text{Subject to} \quad &\sum_y A(y,x) \lambda(y) \leq c(x) 
+    \end{align*}
+  \item $\lambda$ is the \emph{dual plan}
+  \end{itemize}
+
+  \begin{block}{Strong duality theorem}
+  If a feasible primal plan exists, then $c = \beta$. If moreover, $c > -\infty$, then primal optimal and dual optimal plans exist.  
+  \end{block}
+\end{frame}
 
 \begin{frame}[plain]\frametitle{Tangent bundle of the positive orthant of the sphere}
 
