@@ -357,7 +357,7 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
     \end{gather*}
     thus identifying an operator $A \colon (\Omega_1 \cup \Omega_2) \times (\Omega_1 \times \Omega_2)$ with
     \begin{equation*}
-     \sum_{(x_1,x_2) \in \Omega_1 \times \Omega_2} A(y;x_1,x_2) q(x_1,x_2) = (q_1 \cup q_2)(y)    
+     \sum_{(x_1,x_2) \in \Omega_1 \times \Omega_2} A(y;x_1,x_2) q(x_1,x_2) = (q_1 \cup q_2)(y) \ , \quad y \in \Omega_1 \cup \Omega_2 
     \end{equation*}
 \end{itemize}    
 \end{frame}
@@ -368,35 +368,23 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
     \begin{equation*}
         \inf \setof{\sum_{x_1,x_2} c(x_1,x_2) q(x_1,x_2)}{q \in \Pi(q_1,q_2)}
     \end{equation*}
-    \item It is a primal problem in canonical form:
+    \item It is a \emph{primal problem} in canonical form:
        \begin{align*}
       \text{Find} \quad c =& \inf \sum_{x_1,x_2} c(x_1,x_2) q(x_1,x_2) \\
       \text{Subject to} \quad &\sum_x A(y;x_1,x_2) q(x_1,x_2) = (q_1 \cup q_2)(y) \\
       &q(x_1,x_2) \geq 0 \ .
     \end{align*}
-\end{itemize}
 
-\begin{itemize}
-    \item The dual problem in standard form is
-    \begin{align*}
-      \text{Find} \quad \beta =& \sup \sum_y (q_1 \cup q_2) (y) \lambda(y) \\
-      \text{Subject to} \quad &\sum_y A(y;x_1,x_2) \lambda(y) \leq c(x_1,x_2) 
-    \end{align*}
-\item    that is, given the form of $A$,
+    \item The \emph{dual problem} in standard form is
 \begin{align*}
       \text{Find} \quad \beta =& \sup \left(\sum_{y_1\in X_1}q_1(y_1) \lambda_1(y_1) + \sum_{y_2 \in X_2} q_2(y_2) \lambda_2(y_2)\right) \\
-      \text{Subject to} \quad &\lambda_1(x_1) + \lambda_2(x_2) \leq c(x_1,x_2) \ .
-    \end{align*}
-\end{itemize}
+      \text{Subject to} \quad &\lambda_1(x_1) + \lambda_2(x_2) \leq c(x_1,x_2) \ .    \end{align*}
 
-\begin{itemize}
-    \item There exists a feasible transport plan, and the set of plans is compact. It follows that the full strong duality theorem holds.
-    \item Let $\bar q$, $\bar \lambda$ be the optimal plan and dual plan. The equality of values gives
-    \begin{multline*}
-    \sum_{x_1,x_2} c(x_1,x_2)\bar q(x_1,x_2) = \\ \sum_{x_1\in X_1}q_1(x_1) \bar \lambda_1(x_1) + \sum_{x_2 \in X_2} q_2(x_2) \bar \lambda_2(x_2) = \\
-    \sum_{x_1,x_2} \left(\bar \lambda_1(x_1) + \bar \lambda_2(x_2)\right) \bar q(x_1,x_2) 
-    \end{multline*}
-    \item Now, the inequality $c \geq \lambda_1 \oplus \lambda _2$ implies
+    \item There exists a feasible transport plan, and the set of plans is compact. It follows that the full strong duality theorem holds. Let $\bar q$, $\bar \lambda$ be the optimal plan and dual plan. The equality of values gives
+    \begin{equation*}
+    \sum_{x_1,x_2} c(x_1,x_2)\bar q(x_1,x_2) = \sum_{x_1,x_2} \left(\bar \lambda_1(x_1) + \bar \lambda_2(x_2)\right) \bar q(x_1,x_2) 
+    \end{equation*}
+    \item Finally, the inequality $c \geq \lambda_1 \oplus \lambda _2$ implies
     \begin{equation*}
         c(x_1,x_2)=\bar \lambda_1(x_1) + \bar \lambda_2(x_2) \quad \text{provided $\bar q(x_1,x_2) \neq 0$}
     \end{equation*}
@@ -407,12 +395,11 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
 \begin{frame}[plain]\small\frametitle{Transport plans in $\opensimplexon{\Omega_1 \times \Omega_2}$}
  \begin{itemize}
  
-     \item Define for all $q_1 \in \opensimplexon{\Omega_1}$ and $q_2 \in \opensimplexon{\Omega_2}$
+     \item For all $q_1 \in \opensimplexon{\Omega_1}$ and $q_2 \in \opensimplexon{\Omega_2}$ the set of \emph{positive transport plans} from $q_1$ to $q_2$ is
      \begin{equation*}
          \overset{\circ}{\Pi}(q_1,q_2) = \setof{q \in \opensimplexon{\Omega_1 \times \Omega_2}}{X_1 q = q_1,X_2 q= q_2}
      \end{equation*}
  
- \item  $\overset{\circ}{\Pi}$ is the set of positive \emph{transport plans} from $q_1$ to $q_2$. 
  \item \emph{$\overset{\circ}{\Pi}$ is a sub-manifold of the affine statistical manifold on $\maxexpat {\Omega_1 \times \Omega_2}$}.
 
 \item A \emph{sub-manifold} of the affine manifold $(M,s_p,\eBspace p,\transport p q \colon p,q \in M)$ is a subset $N \subset M$ such that for each $q \in N$ there exists a smooth splitting of the fibre $\eBspace q = S_q N \oplus R_q N$ and the vector space $S_q N$ is the set of all velocities of curves in $N$ through $q$. 
@@ -421,48 +408,45 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
  \end{itemize}
 \end{frame}
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Velocities of curves in $\overset{\circ}\Pi(q_1,q_2)$}
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Velocity of a curve in $\overset{\circ}\Pi(q_1,q_2)$}
 
 \begin{itemize}
-    \item $t \mapsto q(t)$ is a smooth curve of $\maxexpat {\Omega_1 \times \Omega_2}$ with values in the set of strictly positive transport plans. We can say
-    \begin{equation*}
-      t \mapsto q(t) \in \overset{\circ}{\Pi}(q_1,q_2)
-    \end{equation*}
-    \item Recall Fisher's score properties,
+    \item Let $t \mapsto q(t)$ be a smooth curve of $\opensimplexon {\Omega_1 \times \Omega_2}$ with values in the set of strictly positive transport plans, 
+$      t \mapsto q(t) \in \overset{\circ}{\Pi}(q_1,q_2)
+ $.
+    \item Recall \emph{Fisher's score} properties,
     \begin{gather*}
         \velocity q(t) = \derivby t \log q(t) = \frac {\dot q(t)}{q(t)} \\
         \derivby t \expectat {q(t)} f = \scalarat {q(t)} {f - \expectat {q(t)} f}{\velocity q(t)} \ . 
     \end{gather*}
-    \item For each random variable depending on the first variable only, $f_1\circ X_1$ it holds
-\begin{multline*} 0 = \derivby t \expectat {q_1} {f_1} =  \derivby t \expectat {q(t)} {f_1\circ X_1} = \\ \scalarat {q(t)}  {f_1 \circ X_1 - \expectat {q(t)} {f_1\circ X_1}} {\velocity q(t)} = \expectat {q(t)} {f_1\circ X_1 \velocity q(t)} \ , \end{multline*}  Similarly on the other projection.
-\item It follows that
+    \item For each random variable depending on one variable only, $f_j\circ X_j$, $j = 1,2$, it holds
+      \begin{multline*} 0 = \derivby t \expectat {q_j} {f_j} =  \derivby t \expectat {q(t)} {f_j\circ X_j} = \\ \scalarat {q(t)}  {f_j \circ X_j - \expectat {q(t)} {f_j\circ X_j}} {\velocity q(t)} = \expectat {q(t)} {f_j\circ X_j \velocity q(t)} \ , \end{multline*}
+      It follows that \emph{$\condexpat {q(t)} {\velocity q(t)} {X_j} = 0$}.
+      \item
+That is, \emph{if $t \mapsto q(t) \in \openplan{q_1}{q_2}$, then $\velocity q(t)$ is an interaction at $q(t)$, $\velocity q(t) \in H_2(q(t))$}.
+\item Conversely, let $q \in \openplan{q_1}{q_2}$ and $c_{12} \in H_q(q)$. The curve $t \mapsto (1+tc) \cdot q$ is defined for $t$ in a neighborhood of 0. The margins are correct,
 \begin{equation*}
-\boxed{\condexpat {q(t)} {\velocity q(t)} {X_1} = 0 \quad \text{and} \quad \condexpat {q(t)} {\velocity q(t)} {X_2} = 0}
-\end{equation*}
-that is, \emph{if $t \mapsto q(t) \in \openplan{q_1}{q_2}$, then $\velocity q(t)$ is an interaction at $q(t)$, $\velocity q(t) \in H_2(q(t))$}.
-\item Conversely, let $q \in \openplan{q_1}{q_2}$ and $c_{12} \in H(q)$. The curve $t \mapsto (1+tc) \cdot q$ is defined in a neighborhood of 0. The margins are correct,
-\begin{equation*}
-    \expectat {(1+tc_{12}) \cdot q}{g\circ X_i} = \expectat q {(1+tc_{12})g\circ X_i} = \expectat {q_1} g \ ,
+    \expectat {(1+tc_{12}) \cdot q}{g\circ X_j} = \expectat q {(1+tc_{12})g\circ X_j} = \expectat {q_j} g \ ,
 \end{equation*}
 and the velocity at 0 is $c_{12}$,
 \begin{equation*}
    \left. \derivby t \logof{(1+tc_{12}) \cdot q}
-\right|_{t=0} = \left. \frac {c_{12} q}{(1+tc_{12})q} \right|_{t=0} = c_{12} \ .
-\end{equation*}
-\item In conclusion, \emph{for all $q \in \overset{\circ}{\Pi}(q_1,q_2)$, the velocities fiber is the vector space of interactions},
+\right|_{t=0} = \left. \frac {c_{12} q}{(1+tc_{12})q} \right|_{t=0} = c_{12} \ \end{equation*}
+
+\item In conclusion, for all $q \in \overset{\circ}{\Pi}(q_1,q_2)$, the velocities fibre is the vector space of interactions,
 \begin{equation*}
- \boxed{S_q \overset{\circ}\Pi(q_1,q_2) = H_2(q)}
+S_q \openplan{q_1}{q_2} = H_2(q)
 \end{equation*}
 
 \item The orthogonal splitting of the statistical bundle is
 \begin{equation*}
-    \expfibreat q {\Omega_1 \times \Omega_2} = S_q \openplan{q_1}{q_2} \oplus_q \hajekof{q}\expfibreat q {\Omega_1 \times \Omega_2},
+    \expfibreat q \opensimplexon{\Omega_1 \times \Omega_2} = S_q \openplan{q_1}{q_2} \oplus \hajekof{q}\expfibreat q \opensimplexon{\Omega_1 \times \Omega_2},
 \end{equation*}
-where $q_1, q_2$ are the margins of $q$.
+where $q \on \openplan{q_1}{q_2}$.
 
-\item Notice that the complement fiber is $H_1(q)$,
+\item The complement fiber is 
 \begin{multline*}
-  \hajekof{q}\expfibreat q {\Omega_1 \times \Omega_2} = \\ \setof {f_1 \circ X_1 + f_2 \circ X_2}{\expectat {q_1}{f_1} = \expectat {q_2}{X_2} = 0} \ ,
+ H_1(q) =  \hajekof{q}\expfibreat q \opensimplexon{\Omega_1 \times \Omega_2} = \\ \setof {f_1 \circ X_1 + f_2 \circ X_2}{\expectat {q_1}{f_1} = \expectat {q_2}{X_2} = 0} \ ,
  \end{multline*}
   which is in turn related to the \emph{exponential families of additive statistics} 
   \begin{equation*}
