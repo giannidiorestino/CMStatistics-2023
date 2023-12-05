@@ -32,7 +32,7 @@
 \DeclareMathOperator{\Maxexp}{\mathcal E}
 \DeclareMathOperator{\M}{\mathcal M}
 \DeclareMathOperator{\eDeriv}{D_{\text{e}}}
-\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Grad}{grad}
 \DeclareMathOperator{\mDeriv}{D_{\text{m}}}
 
 \newcommand{\Bspaceat}[1]{L^2_0(#1)}
@@ -98,13 +98,13 @@
 
 \author[G Pistone]{Giovanni Pistone}
 
-\institute[CCA]{\includegraphics[height=4em]{pictures/deCastro-logo.pdf}}
+\institute[CCA]{\href{https://www.carloalberto.org/research/statistics-initiative/}{\includegraphics[height=4em]{pictures/deCastro-logo.pdf}}}
   
 \date{Compiled \today}
 
 \begin{document} 
 % 
-\begin{frame}\frametitle{EO357 CMStatistics 2023 }  
+\begin{frame}\frametitle{EO357 \href{http://www.cmstatistics.org/CMStatistics2023/}{CMStatistics 2023}}  
 
 \titlepage
 
@@ -113,9 +113,9 @@ web-page: \url{www.giannidiorestino.it}
 
 e-mail: \url{giovanni.pistone@carloalberto.org}
 
-orcidID: 0000-0003-2841-788X
+orcidID: \href{https://orcid.org/0000-0003-2841-788X}{0000-0003-2841-788X}
 
-The author acknowledges the support of deCastro Statistics. He is a member of INdAM-GNAMPA and UMI AI\&ML\&MAT.
+The author acknowledges the support of \href{https://www.carloalberto.org/research/statistics-initiative/}{De Castro Statistics}. He is a member of \href{https://www.carloalberto.org/research/statistics-initiative/}{INdAM-GNAMPA} and \href{https://aiml.unich.it}{UMI-AI\&ML\&MAT}.
 
 \nobibliography{tutto}%
 
@@ -125,7 +125,10 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 
 \begin{frame}[plain]\small\frametitle{Abstract}
 
-\emph{Functional ANOVA} (Analysis of variance) appears in Statistics and System Theory. It is a particular orthogonal splitting of the vector space of square-integrable random variables on a product space. When the sample space is factorial,  it conveniently splits the fibres of the \emph{affine bundle} consisting of couples of probability functions and Fisher's scores, which we call the \emph{Statistical Bundle}. One of the terms in the splitting is the \emph{additive model}, while the other is related to the \emph{transportation model} with fixed margins. This concept is known in the classical theory of contingency tables. We rephrase it and show implications to algebraic statistics, information geometry, and Kantorovich optimal transport. In this setting, the \emph{gradient flow} in the transport sub-model has a limit point that solves the \emph{Kantorovich problem}.
+  \emph{Functional ANOVA} (Analysis of variance) appears in Statistics and System Theory. It is a particular orthogonal splitting of the vector space of square-integrable random variables on a product space. When the sample space is factorial,  it conveniently splits the fibres of the affine bundle consisting of couples of probability functions and Fisher's scores, which we call the \emph{statistical bundle}. One of the terms in the splitting is the \emph{additive model}, while the other is related to the \emph{transportation model} with fixed margins. This concept is known in the classical theory of contingency tables. We rephrase it and show implications to algebraic statistics, information geometry, and Kantorovich optimal transport. In this setting, the \emph{gradient flow} in the transport sub-model has a limit point that solves the \emph{Kantorovich problem}.
+
+  \vfill
+\emph{keywords}: ANOVA, statistical bundle, gradient flow, additive and transportation model, Kantorovich problem. 
 
 \end{frame}
 
@@ -142,9 +145,9 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 \end{description}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[plain]
 
-\huge PART 1: KEYWORDS EXPLAINED
+\huge PART 1 \\ ANOVA and STATISTICAL BUNDLE.
     
 \end{frame}
 
@@ -159,13 +162,14 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
     \begin{equation*}
     q_1(x_1) = \sum_y f(x_1,y) \ , \quad q_2(x_2) = \sum_x q(x,x_2) \ .
     \end{equation*}
-    \item Occasionally, we use a numbering $\Omega_k = \set{1,\dots,n_k}$ and identify $q$ with a matrix $Q \in \reals^{n_1 \times n_2}$.
-    \item For each random variable $f \in L^2(q)$ we look for an orthogonal decomposition of the form
+    \item Normally, we do not use a numbering $\Omega_k = \set{1,\dots,n_k}$ and do not identify the probability function $q$ with a matrix (or table) $Q \in \reals^{n_1 \times n_2}$.
+    \item For each probability function $q$ and each random variable $f \in L^2(q)$ we look for $q$-orthogonal decomposition of the form
     \begin{equation*}
         f(x_1,x_2) = f_0 \oplus (f_1(x) + f_2(x_2)) \oplus f_{12}(x_1,x_2)
     \end{equation*}
     \item Notice that we do not require $f_1 \perp f_2$ as it is done in case of independence, cf Hajek:1968 and Sobol':2001.
-    \item We call \emph{factors} the two projections \begin{equation*}
+    \item We call \emph{factors} the two marginal projections
+\begin{equation*}
     X_1 \colon (x_1,x_2) \mapsto x_1 \ , \quad X_2 \colon (x_1,x_2) \mapsto x_2 \ .  
     \end{equation*}
   \item Consider the subsets $I \subset \set{1,2}$, partially ordered by inclusion, that is, 
@@ -211,11 +215,13 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
  \mathbb E_q - \hajekof q) f \ .
     \end{equation*}
     \item We want to compute the Hajek projection. It is a least square problem
-    \begin{align*}
-    \min& \expectat q {\avalof {f - f_0 - f_1\circ X_1 - f_2\circ X_2}^2} \\    
-    \text{s.t.}& f_0 \in \reals, \expectat {q_1} {f_1} = 0, \expectat {q_2} {f_2} = 0
-    \end{align*}
-    \item The following equations are the gradient equations of the least square problem. They also derive from conditioning the decomposition.
+      \begin{equation*}
+        \begin{array}{ll}
+    \text{minimize} & \expectat q {\avalof {f - f_0 - f_1\circ X_1 - f_2\circ X_2}^2} \\    
+    \text{with}& f_0 \in \reals, \expectat {q_1} {f_1} = 0, \expectat {q_2} {f_2} = 0.
+    \end{array}
+      \end{equation*}
+    \item The following equations are the normal equations of the least square problem. Or, they follow from the conditioning of the decomposition.
     \begin{align*}
         \expectat q {f} &= f_0 \\
         \condexpat q {f}{X_1} &= f_0 + f_1\circ X_1 + \condexpat q {f_2 \circ X_2}{X_1} \\ 
@@ -227,19 +233,22 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Affine statistical bundle}
 \begin{itemize}
     \item The \emph{affine statistical bundle} is a structure that describes the joint geometry of probabilities and random variables. This justifies the adjective "statistical".
-    \item The geometry is affine in the sense of Weyl's axioms. We modify the original definition to allow for fibres depending on the base point.
-\item The affine charts define a special atlas whose change-of-charts mappings are affine.
+\item The geometry is affine in the sense of Weyl's axioms: for each couple of points $P, Q \in \model$ there is vector $v = \overrightarrow{PQ}$ in such a way $Q = P+v$ and $\overrightarrow{PQ}+\overrightarrow{QR}=\overrightarrow{PR}$. 
+
 \item We consider the set of couples $(q,v)$ such that $q$ is a positive probability function, $q \in \opensimplexon \Omega$, and $v$ is a random variable whose $q$-expectation is zero, $v \in L^2_0(q)$. The vector space $L_0^2(q)$ is the \emph{fibre} at $q$.
+
+\item We modify the original Weyl's definition to allow for vector spaces depending on the base point.
+%\item The affine charts define a special atlas whose change-of-charts mappings are affine.
 \end{itemize} 
 
-\begin{block}{Affine statistical bundle}
+\begin{definition}[Statistical bundle]
     \begin{equation*}
         S\opensimplexon \Omega = \setof{(q,v)}{q \in \opensimplexon \Omega, v \in L^2_0(q)}
     \end{equation*}
-\end{block}
+\end{definition}
 \end{frame}
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Exponential chart and transport}
+\begin{frame}[plain,allowframebreaks]\small\frametitle{Exponential chart}
 
   \begin{itemize}
 
@@ -271,13 +280,13 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 \end{itemize}
 \end{frame}
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Mixture chart and transport}
+\begin{frame}[plain]\small\frametitle{Mixture chart}
 \begin{itemize}
 \item  We define the \emph{mixture displacement} from $p \in \opensimplexon \Omega$ to $q \in \opensimplexon \Omega$ on by
        \begin{equation*}
    (p,q) \mapsto \eta_p(q) = \frac q p - 1 \in \Bspaceat p = \expfibreat p {\opensimplexon \Omega} \ ,
     \end{equation*}
-    and the \emph{mixture transport} between fibres wby
+    and the \emph{mixture transport} between fibres by
     \begin{equation*}
       \mtransport p q \colon \expfibreat p {\opensimplexon \Omega} \ni v \mapsto \frac p q \, v \in \expfibreat p {\opensimplexon \Omega} \ .
     \end{equation*}
@@ -285,22 +294,36 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
   \begin{equation*}
  \left(\frac q p -1\right) + \frac q p \left(\frac r q -1\right) = \left(\frac r p -1\right) \ .
 \end{equation*}
-\item The inverse chart is defined for all $v > -1$, $w \in \Bspaceat p$ by
+\item The inverse chart $\eta_p(v)$ is defined for all $v > -1$, $w \in \expfibreat p {\opensimplexon \Omega}$ by
   \begin{equation*}
     \eta^{-1}_p(v) =  (1+v) \cdot p \ .
   \end{equation*}
 \end{itemize} 
 
-\begin{block}{} We extend the mixture charts to the affine statistical bundle by
-    \begin{equation*}
-\eta_p \colon S\opensimplexon X \ni (q,v) \mapsto \left(\eta_p(q), \mtransport q p v \right) \in B_p \times B_p \ .        
-    \end{equation*}
-    The charts define an affine space with fibres $B_p^2$, $p \in \opensimplexon X$.
-\end{block}
-
 \end{frame}
 
-\begin{frame}
+\begin{frame}[plain]\small
+  \frametitle{Duality, velocity, gradient}
+  \begin{itemize}
+  \item The exponential transport and the mixture transport are \emph{dual} of each other with respect to the $L^2_0$ inner product, $\scalarat p v w = \expectat p v w$. For all $v \in \expfibreat q {\opensimplexon \Omega}$ and $w \in \expfibreat p {\opensimplexon \Omega}$ it holds
+  \begin{equation*}
+    \scalarat q v {\etransport p q w} = \scalarat p {\mtransport q p v} w \ . 
+  \end{equation*}
+\item The \emph{velocity} of a smooth curve $t \mapsto q(t) \in \opensimplexon \Omega$ is the curve $t \mapsto (q(t), \velocity q(t)) \in \expbundleat {\opensimplexon \Omega}$ defined by
+  \begin{equation*}
+    \velocity q(t) = \derivby t \log q(t) \ .
+  \end{equation*}
+  \item The \emph{(natural) gradient} of a smooth function $\phi \colon \opensimplexon \Omega \to \reals$ is the section $\Grad \phi$ of the statistical bundle such that for all smooth curve $t \mapsto q(t)$ it holds
+    \begin{equation*}
+      \derivby t \phi(q(t)) = \scalarat {q(t)} {\Grad \phi(q(t))} {\velocity q(y)} \ .
+    \end{equation*}
+    \item The \emph{gradient flow} of $\phi$ is the solution of the equation
+      \begin{equation*}
+        \velocity q(t) = - \Grad \Phi(q(t)) \ .
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+\begin{frame}[plain]
 
     \huge PART 2: \\
     PRODUCT SAMPLE SPACE
@@ -311,29 +334,28 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Fixed margins}
 \begin{itemize}
-    \item Assume a product sample space $X = \Omega_1 \times \Omega_2$ and consider the probability simplex $\simplexon{\Omega_1 \times \Omega_2}$. The two marginalisation mappings are
+    \item Assume a product sample space $\Omega = \Omega_1 \times \Omega_2$ and consider the probability simplex $\simplexon{\Omega_1 \times \Omega_2}$. The two marginalisation mappings are
     \begin{align*}
- X_1& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q(\cdot,\cdot) \mapsto \sum_{x_2} q(\cdot,x_2) \in  \simplexon{X_1}  \\
- X_2& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q(\cdot,\cdot) \mapsto \sum_{x_1} q(x_1,\cdot) \in  \simplexon{X_2} 
+ X_1& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q(\cdot,\cdot) \mapsto \sum_{x_2} q(\cdot,x_2) \in  \simplexon{\Omega_1}  \\
+ X_2& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q(\cdot,\cdot) \mapsto \sum_{x_1} q(x_1,\cdot) \in  \simplexon{\Omega_2} 
     \end{align*}
-    \item For each given $q_1 \in \simplexon{X_1}$ and $q_2 \in \simplexon{X_2}$ define 
+    \item Each $q$ is a \emph{transport plan} from $q_1$ to $q_2$.
+    \item For each given $q_1 \in \simplexon{\Omega_1}$ and $q_2 \in \simplexon{\Omega_2}$ define 
     \begin{equation*}
         \Pi(q_1,q_2) = \setof{q \in \simplexon{\Omega_1 \times \Omega_2}} {X_1 q = q_1, X_2 q = q_2} \ .
     \end{equation*}
-    \item The set of \emph{transport plans}  $\Pi(q_1,q_2)$ is \begin{itemize} \item non-empty, \item convex, \item compact.
-    \end{itemize}
-
-    \item The marginalization conditions
+    \item The set of transport plans  $\Pi(q_1,q_2)$ is non-empty, convex, and closed.
+      \item The marginalization conditions
     \begin{gather*}
-        \sum_{x_2 \in X_2} q(y_1,x_2) = q_1(y_1) \quad y_1 \in X_1 \\
-            \sum_{x_1 \in X_1} q(x_1,y_2) = q_2(y_2) \quad y_2 \in X_2
+        \sum_{x_2 \in X_2} q(y_1,x_2) = q_1(y_1) \quad y_1 \in \Omega_1 \\
+            \sum_{x_1 \in X_1} q(x_1,y_2) = q_2(y_2) \quad y_2 \in \Omega_2
     \end{gather*}
     can be written as
     \begin{gather*}
         \sum_{(x_1,x_2) \in X_1\times X_2} (y_1 = x_1) q(x_1,x_2) = q_1(y_1) \\
              \sum_{(x_1,x_2) \in X_1\times X_2} (y_2 = x_2) q(x_1,x_2) = q_2(y_2)
     \end{gather*}
-    thus identifying an operator $A \colon (X_1 \cup X_2) \times (\Omega_1 \times \Omega_2)$ with
+    thus identifying an operator $A \colon (\Omega_1 \cup \Omega_2) \times (\Omega_1 \times \Omega_2)$ with
     \begin{equation*}
      \sum_{(x_1,x_2) \in \Omega_1 \times \Omega_2} A(y;x_1,x_2) q(x_1,x_2) = (q_1 \cup q_2)(y)    
     \end{equation*}
@@ -382,38 +404,21 @@ The author acknowledges the support of deCastro Statistics. He is a member of IN
     
 \end{frame}
 
-\begin{frame}[plain]\small\frametitle{Transport plans in $\maxexpat {\Omega_1 \times \Omega_2}$}
+\begin{frame}[plain]\small\frametitle{Transport plans in $\opensimplexon{\Omega_1 \times \Omega_2}$}
  \begin{itemize}
  
-     \item Define for all $q_1 \in \maxexpat{\Omega_1}$ and $q_2 \in \maxexpat{\Omega_2}$
+     \item Define for all $q_1 \in \opensimplexon{\Omega_1}$ and $q_2 \in \opensimplexon{\Omega_2}$
      \begin{equation*}
-         \overset{\circ}{\Pi}(q_1,q_2) = \setof{q \in \maxexpat{\Omega_1 \times \Omega_2}}{X_1 q = q_1,X_2 q= q_2}
+         \overset{\circ}{\Pi}(q_1,q_2) = \setof{q \in \opensimplexon{\Omega_1 \times \Omega_2}}{X_1 q = q_1,X_2 q= q_2}
      \end{equation*}
  
- \item  $\overset{\circ}{\Pi}$ is the set of positive \emph{couplings} or positive \emph{transport plans} of $q_1$ and $q_2$. 
- \item \emph{$\overset{\circ}{\Pi}$ is the base set of a sub-manifold of the affine statistical manifold on $\maxexpat {\Omega_1 \times \Omega_2}$}.
+ \item  $\overset{\circ}{\Pi}$ is the set of positive \emph{transport plans} from $q_1$ to $q_2$. 
+ \item \emph{$\overset{\circ}{\Pi}$ is a sub-manifold of the affine statistical manifold on $\maxexpat {\Omega_1 \times \Omega_2}$}.
 
 \item A \emph{sub-manifold} of the affine manifold $(M,s_p,\eBspace p,\transport p q \colon p,q \in M)$ is a subset $N \subset M$ such that for each $q \in N$ there exists a smooth splitting of the fibre $\eBspace q = S_q N \oplus R_q N$ and the vector space $S_q N$ is the set of all velocities of curves in $N$ through $q$. 
 
-\item Basic examples of sub-manifolds of affine statistical manifolds are mixture models and exponential families, to be discussed elsewhere. Here we discuss the set of couplings or transport plans.
+\item Basic examples of sub-manifolds of the affine statistical manifold are exponential families and mixture models and exponential families. Here we discuss the set of transport plans which turns out to be a mixture model.
  \end{itemize}
-\end{frame}
-
-  \begin{frame}[plain]\small\frametitle{$\openplan {q_1} {q_2}$ as a sub-manifold of $\maxexpat{\Omega_1 \times \Omega_2}$}
-      
-  \begin{itemize}
-
-\item Finite dimensional exponential families and finite-dimensional mixture models are notable examples of sub-manifolds of the affine manifold structure because they are flat in one of the two dual geometries. 
-
-\item Notice that the orthogonal projection on the space of velocities provides the required splitting.
-
-\item Precisely, the space $S_q N$ of velocities is the affine expression of the tangent space to $N$. 
-
-\item The set of couplings $\Pi(q_1,q_2)$ is an affine subset of the probability simplex. Hence it is a polytope, a convex set generated by a finite number of vertices. 
-
-\item Hence, \emph{$\openplan {q_1}{q_2}$ is an open mixture model}. 
-
-\end{itemize}
 \end{frame}
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Velocities of curves in $\overset{\circ}\Pi(q_1,q_2)$}
@@ -517,7 +522,7 @@ Let us discuss the \emph{Optimal Transport OT} problem in the framework of the a
 \end{equation*}
 \item The function $q \mapsto C(q)$ restricted to the open transport model $\openplan{q_1}{q_2}$ has gradient in $S\openplan{q_1}{q_2}$ given by
 \begin{equation*}
- \grad C \colon q \mapsto c_{12}(q) = c - \expectat q c - \hajekof q c 
+ \Grad C \colon q \mapsto c_{12}(q) = c - \expectat q c - \hajekof q c 
 \end{equation*}
 \item In fact for all curve $t \mapsto q(t) \in \openplan {q_1}{q_2}$, $q(0) = q$,
 \begin{multline*}
@@ -532,7 +537,7 @@ Let us discuss the \emph{Optimal Transport OT} problem in the framework of the a
 
 \item Notice that  $c_{12}(q) = c - \expectat q c - \hajekof {q} c$ is defined for  all $q \in \Pi(q_1,q_2)$. If $\hat q$ is a zero of the extended gradient map,
 \begin{equation*}
-    \grad C(\hat q) = c_{12}(\hat q) = 0 \ ,
+    \Grad C(\hat q) = c_{12}(\hat q) = 0 \ ,
 \end{equation*}
 then $c$ equals the sum of two functions in one variable on the support of $\hat q$.
 \item
