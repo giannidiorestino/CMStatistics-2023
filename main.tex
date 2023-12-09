@@ -477,37 +477,39 @@ then
 
 \end{frame}
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Gradient flow of the OT problem}
+\begin{frame}[plain]\small\frametitle{Gradient of the expected cost}
 
 Let us discuss the \emph{Optimal Transport OT} problem in the framework of the affine statistical bundle.
 
 \begin{itemize}
-\item $c \colon \Omega_1 \times \Omega_2 \to \reals$ is the cost function and the expected cost function is
+\item $c \colon \Omega_1 \times \Omega_2 \to \reals_{\ge}$ is the \emph{cost function} and the expected cost function is
 \begin{equation*}
   C \colon \opensimplexon {\Omega_1 \times \Omega_2} \ni q \mapsto \expectat q c \ .
 \end{equation*}
-\item The function $q \mapsto C(q)$ restricted to the open transport model $\openplan{q_1}{q_2}$ has gradient in $S\openplan{q_1}{q_2}$ given by
-\begin{equation*}
- \Grad C \colon q \mapsto c_{12}(q) = c - \expectat q c - \hajekof q c 
-\end{equation*}
-\item In fact for all curve $t \mapsto q(t) \in \openplan {q_1}{q_2}$, $q(0) = q$,
+\item The function $q \mapsto C(q)$ restricted to the open transport model $q \in \openplan{q_1}{q_2}$ has \emph{gradient in $S\openplan{q_1}{q_2}$} given by
 \begin{multline*}
 \derivby t C(q(t)) = \derivby t \expectat {q(t)} c = \scalarat {q(t)} {c - \expectat {q(t)} c}{\velocity q(t)} = \\
-\scalarat {q(t)} {c - \expectat {q(t)} c - \hajekof {q(t)} c}{\velocity q(t)}
+\scalarat {q(t)} {\left(c - \expectat {q(t)} c\right) - \hajekof {q(t)} \left(c - \expectat {q(t)} c\right)}{\velocity q(t)} \ ,
 \end{multline*}
-
-\item The equation of the \emph{gradient flow of $C$} is
+that is,
 \begin{equation*}
-  \velocity q(t) = - c_{12}(q(t)) = - (c - \expectat {q(t)} c - \hajekof {q(t)} c)
+  \Grad C(q) = \left(c - C(q(t))\right) - \hajekof {q(t)} \left(c - C(q(t))\right)
+\end{equation*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]\small
+  \frametitle{Gradient flow of the OT cost}
+  \begin{itemize}
+  \item The equation of the \emph{gradient flow of $C$} is
+\begin{equation*}
+  \velocity q(t) = - \left(c - C(q(t)) - \hajekof {q(t)} \left(c - C(q(t))\right)\right) \ .
 \end{equation*}
 
-\item Notice that  $c_{12}(q) = c - \expectat q c - \hajekof {q} c$ is defined for  all $q \in \Pi(q_1,q_2)$. If $\hat q$ is a zero of the extended gradient map,
-\begin{equation*}
-    \Grad C(\hat q) = c_{12}(\hat q) = 0 \ ,
-\end{equation*}
-then $c$ equals the sum of two functions in one variable on the support of $\hat q$.
+\item Notice that the gradient above is the projection onto the space orthogonal to the space of simple effects. Hence, it is actually well defined for all $q \in \simplexon{\Omega_1 \times \Omega_2}$. If $\hat q$ is a zero of this extended map, then $c$ equals the sum of two functions in one variable on the support of $\hat q$.
 \item
-We expect any solution $t \mapsto q(t)$ of the gradient flow equation to converge to a plan $\bar q = \lim_{t \to \infty} q(t) \in \Pi(q_1,q_2)$ such that $\expectat {\bar q} c$ is the value of the Kantorovich optimal transport problem. The form of the gradient is compatible with the classical result in OT.
+  \emph{If} a solution $t \mapsto q(t)$ of the gradient flow equation converges to a transport plan $\bar q = \lim_{t \to \infty} q(t) \in \Pi(q_1,q_2)$, then $\expectat {\bar q} c$ is the value of the Kantorovich optimal transport problem.
+\item The form of the gradient is compatible with the classical result in OT: if $\bar q$ is an optimal plan, that the cost is equal to the sum of two univariate potentials. 
 \end{itemize}
 \end{frame}
 
