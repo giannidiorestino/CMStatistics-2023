@@ -148,7 +148,7 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
 
 \begin{frame}[plain]
 
-\huge PART 1 \\ ANOVA and STATISTICAL BUNDLE.
+\huge PART 1 \\ ANOVA and AFFINE STATISTICAL BUNDLE.
     
 \end{frame}
 
@@ -303,17 +303,23 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
 
 \end{frame}
 
-\begin{frame}[plain]\small
+\begin{frame}[plain,allowframebreaks]\small
   \frametitle{Duality, velocity, gradient}
   \begin{itemize}
-  \item The exponential transport and the mixture transport are \emph{dual} of each other with respect to the $L^2_0$ inner product, $\scalarat p v w = \expectat p v w$. For all $v \in \expfibreat q {\opensimplexon \Omega}$ and $w \in \expfibreat p {\opensimplexon \Omega}$ it holds
+  \item The exponential transport and the mixture transport are \emph{dual} of each other with respect to the $L^2_0$ inner product, $\scalarat p v w = \expectat p {v w}$. For all $v \in \expfibreat q {\opensimplexon \Omega}$ and $w \in \expfibreat p {\opensimplexon \Omega}$ it holds
   \begin{equation*}
     \scalarat q v {\etransport p q w} = \scalarat p {\mtransport q p v} w \ . 
   \end{equation*}
-\item The \emph{velocity} of a smooth curve $t \mapsto q(t) \in \opensimplexon \Omega$ is the curve $t \mapsto (q(t), \velocity q(t)) \in \expbundleat {\opensimplexon \Omega}$ defined by
-  \begin{equation*}
-    \velocity q(t) = \derivby t \log q(t) \ .
-  \end{equation*}
+\item The \emph{velocity  in the chart at $p$} of a smooth curve $t \mapsto q(t) \in \opensimplexon \Omega$ is
+  \begin{gather*}
+    \derivby t s_p(q(t)) = \derivby t \left(\log \frac  {q(t)} p  - \expectat p {\frac  {q(t)} p }\right) = \frac{\dot q(t)} {q(t)} - \expectat p {\frac{\dot q(t)} {q(t)}} \ ,\\ \text{or} \quad
+    \derivby t \eta_p(q(t)) = \derivby t \left(\frac {q(t)} p -1\right) = \frac {\dot q(t)} p \ .
+    \end{gather*}
+  \item In the \emph{moving frame} $p = q(t)$ the two representation are equal. Such an expression of the velocity,
+    \begin{equation*}
+      \velocity q(t) = \frac {\dot q(t)}{q(t)} = \derivby t \log q(t) \ ,  
+    \end{equation*}
+    equals the classical \emph{Fisher's score}. Notice that $\velocity q$ is a lift to the bundle, $t \mapsto (q(t), \velocity q(t)) \in \expbundleat {\opensimplexon \Omega}$.
   \item The \emph{(natural) gradient} of a smooth function $\phi \colon \opensimplexon \Omega \to \reals$ is the section $\Grad \phi$ of the statistical bundle such that for all smooth curve $t \mapsto q(t)$ it holds
     \begin{equation*}
       \derivby t \phi(q(t)) = \scalarat {q(t)} {\Grad \phi(q(t))} {\velocity q(y)} \ .
@@ -324,6 +330,7 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
       \end{equation*}
   \end{itemize}
 \end{frame}
+
 \begin{frame}[plain]
 
     \huge PART 2: \\
@@ -335,15 +342,15 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Fixed margins}
 \begin{itemize}
-    \item Assume a product sample space $\Omega = \Omega_1 \times \Omega_2$ and consider the probability simplex $\simplexon{\Omega_1 \times \Omega_2}$. The two marginalisation mappings are
+    \item Assume a product sample space $\Omega = \Omega_1 \times \Omega_2$ and consider the probability simplex $\simplexon{\Omega_1 \times \Omega_2}$. The two \emph{marginalisation} mappings are
     \begin{align*}
- X_1& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q(\cdot,\cdot) \mapsto \sum_{x_2} q(\cdot,x_2) \in  \simplexon{\Omega_1}  \\
- X_2& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q(\cdot,\cdot) \mapsto \sum_{x_1} q(x_1,\cdot) \in  \simplexon{\Omega_2} 
+ \Pi_1& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q \mapsto \sum_{x_2 \in \Omega_2} q(\cdot,x_2) \in  \simplexon{\Omega_1}  \\
+ \Pi_2& \colon \simplexon{\Omega_1 \times \Omega_2} \ni q \mapsto \sum_{x_1 \in \Omega_1} q(x_1,\cdot) \in  \simplexon{\Omega_2} 
     \end{align*}
     \item Each $q$ is a \emph{transport plan} from $q_1$ to $q_2$.
     \item For each given $q_1 \in \simplexon{\Omega_1}$ and $q_2 \in \simplexon{\Omega_2}$ define 
     \begin{equation*}
-        \Pi(q_1,q_2) = \setof{q \in \simplexon{\Omega_1 \times \Omega_2}} {X_1 q = q_1, X_2 q = q_2} \ .
+        \Pi(q_1,q_2) = \setof{q \in \simplexon{\Omega_1 \times \Omega_2}} {\Pi_1 q = q_1, \Pi_2 q = q_2} \ .
     \end{equation*}
     \item The set of transport plans  $\Pi(q_1,q_2)$ is non-empty, convex, and closed.
       \item The marginalization conditions
@@ -363,42 +370,12 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
 \end{itemize}    
 \end{frame}
 
-\begin{frame}[plain,allowframebreaks]\small\frametitle{Kantorovich optimal transport}
-\begin{itemize}
-    \item Given the \emph{cost} $c \colon \Omega_1 \times \Omega_2 \to \reals$, Kantorovich looks for the transport plan with minimal expected cost
-    \begin{equation*}
-        \inf \setof{\sum_{x_1,x_2} c(x_1,x_2) q(x_1,x_2)}{q \in \Pi(q_1,q_2)}
-    \end{equation*}
-    \item It is a \emph{primal problem} in canonical form:
-       \begin{align*}
-      \text{Find} \quad c =& \inf \sum_{x_1,x_2} c(x_1,x_2) q(x_1,x_2) \\
-      \text{Subject to} \quad &\sum_x A(y;x_1,x_2) q(x_1,x_2) = (q_1 \cup q_2)(y) \\
-      &q(x_1,x_2) \geq 0 \ .
-    \end{align*}
-
-    \item The \emph{dual problem} in standard form is
-\begin{align*}
-      \text{Find} \quad \beta =& \sup \left(\sum_{y_1\in X_1}q_1(y_1) \lambda_1(y_1) + \sum_{y_2 \in X_2} q_2(y_2) \lambda_2(y_2)\right) \\
-      \text{Subject to} \quad &\lambda_1(x_1) + \lambda_2(x_2) \leq c(x_1,x_2) \ .    \end{align*}
-
-    \item There exists a feasible transport plan, and the set of plans is compact. It follows that the full strong duality theorem holds. Let $\bar q$, $\bar \lambda$ be the optimal plan and dual plan. The equality of values gives
-    \begin{equation*}
-    \sum_{x_1,x_2} c(x_1,x_2)\bar q(x_1,x_2) = \sum_{x_1,x_2} \left(\bar \lambda_1(x_1) + \bar \lambda_2(x_2)\right) \bar q(x_1,x_2) 
-    \end{equation*}
-    \item Finally, the inequality $c \geq \lambda_1 \oplus \lambda _2$ implies
-    \begin{equation*}
-        c(x_1,x_2)=\bar \lambda_1(x_1) + \bar \lambda_2(x_2) \quad \text{provided $\bar q(x_1,x_2) \neq 0$}
-    \end{equation*}
-\end{itemize}
-    
-\end{frame}
-
 \begin{frame}[plain]\small\frametitle{Transport plans in $\opensimplexon{\Omega_1 \times \Omega_2}$}
  \begin{itemize}
  
      \item For all $q_1 \in \opensimplexon{\Omega_1}$ and $q_2 \in \opensimplexon{\Omega_2}$ the set of \emph{positive transport plans} from $q_1$ to $q_2$ is
      \begin{equation*}
-         \openplan{q_1}{q_2} = \setof{q \in \opensimplexon{\Omega_1 \times \Omega_2}}{X_1 q = q_1,X_2 q= q_2}
+         \openplan{q_1}{q_2} = \setof{q \in \opensimplexon{\Omega_1 \times \Omega_2}}{\Pi_1 q = q_1,\Pi_2 q= q_2}
      \end{equation*}
  
    \item A \emph{sub-manifold} of the affine statistical manifold $(\M,s_p,\eBspace p,\transport p q \colon p,q \in M)$ is a subset $\N \subset \M$ such that for each $q \in \N$ there exists a smooth \emph{splitting} of the fibre at $q$,
@@ -428,9 +405,9 @@ The author acknowledges the support of \href{https://www.carloalberto.org/resear
     \end{gather*}
     \item For each random variable depending only on one factor
       \begin{multline*} 0 = \derivby t \expectat {q_j} {f_j} =  \derivby t \expectat {q(t)} {f_j\circ X_j} = \\ \scalarat {q(t)}  {f_j \circ X_j - \expectat {q(t)} {f_j\circ X_j}} {\velocity q(t)} = \expectat {q(t)} {f_j\circ X_j \velocity q(t)} \ . \end{multline*}
-  \item Hence $\condexpat {q(t)} {\velocity q(t)} {X_j} = 0$, $j=1,2$.
- That is, \emph{$\velocity q(t)$ is a  $q(t)$-interaction}, $\velocity q(t) \in H_2(q(t))$.
-\item Conversely, let $q \in \openplan{q_1}{q_2}$ and $c_{12} \in H_2(q)$. The curve $t \mapsto (1+tc_{12}) \cdot q$ is defined for $t$ in a neighborhood of 0 and stays in $\openplan{q_1}{q_2}$.
+Hence $\condexpat {q(t)} {\velocity q(t)} {X_j} = 0$, $j=1,2$.
+\item  That is, \emph{$\velocity q(t)$ is a  $q(t)$-interaction}, $\velocity q(t) \in H_2(q(t))$.
+\item Conversely, let $q \in \openplan{q_1}{q_2}$ and $c_{12} \in H_2(q)$. The curve $t \mapsto (1+tc_{12}) \cdot q$ is defined for $t$ in a neighborhood of 0, stays in $\openplan{q_1}{q_2}$,
 \begin{equation*}
     \expectat {(1+tc_{12}) \cdot q}{g\circ X_j} = \expectat q {(1+tc_{12})g\circ X_j} = \expectat {q_j} g \ ,
 \end{equation*}
@@ -439,7 +416,7 @@ and the velocity at 0 is $c_{12}$,
    \left. \derivby t \logof{(1+tc_{12}) \cdot q}
 \right|_{t=0} = \left. \frac {c_{12} q}{(1+tc_{12})q} \right|_{t=0} = c_{12} \ \end{equation*}
 \end{itemize}
-\begin{block}{}For all $q \in \openplan{q_1}{q_2}$, the velocities' fibre is the vector space of interactions,
+\begin{block}{Proposition}For all $q \in \openplan{q_1}{q_2}$, the velocities' fibre equals the vector space of interactions,
 \begin{equation*}
 S_q \openplan{q_1}{q_2} = H_2(q)
 \end{equation*}
@@ -450,7 +427,7 @@ S_q \openplan{q_1}{q_2} = H_2(q)
     \expfibreat q \opensimplexon{\Omega_1 \times \Omega_2} = S_q \openplan{q_1}{q_2} \oplus \hajekof{q}\expfibreat q \opensimplexon{\Omega_1 \times \Omega_2} \ .
 \end{equation*}
 
-\item The complement fibre is 
+\item The complement fibre $R_q \expfibreat q {\opensimplexon{\Omega_1 \times \Omega_2}}$ is 
 \begin{multline*}
  H_1(q) =  \hajekof{q}\expfibreat q \opensimplexon{\Omega_1 \times \Omega_2} = \\ \setof {f_1 \circ X_1 + f_2 \circ X_2}{\expectat {q_1}{f_1} = \expectat {q_2}{X_2} = 0} \ ,
  \end{multline*}
@@ -463,9 +440,9 @@ S_q \openplan{q_1}{q_2} = H_2(q)
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{$\openplan{q_1}{q_2}$ as an affine space}
 \begin{itemize}
-\item If $q , r \in \openplan {q_1} {q_2}$, given $c \in H_2(q) = S_q \openplan {q_1}{q_2}$,
+\item If $q , r \in \openplan {q_1} {q_2}$ and $c_{12} \in H_2(q) = S_q \openplan {q_1}{q_2}$,
 \begin{equation*}
-\expectat r {\left(\frac q r c\right) g_i \circ X_i} = \expectat q {c \,  g_i \circ X_i} = 0
+\expectat r {\mtransport q r c_{12} g_i \circ X_i} = \expectat r {\left(\frac q r c_{12}\right) g_i \circ X_i} = \expectat q {c_{12} \,  g_i \circ X_i} = 0
 \end{equation*}
 that is, $\frac q r c \in H_2(r) = S_r \openplan {q_1}{q_2}$.
 \item We have defined a co-cycle 
@@ -473,12 +450,11 @@ of parallel transports on the bundle
 \begin{equation*}
     S \openplan {q_1}{q_2} = \setof {(q,c)}{ q \in \openplan {q_1}{q_2}, c \in H_2(q)} 
 \end{equation*}
-\item The dual transport is computed as follows. If
-\begin{gather*}
-  q, r \in \openplan {q_1}{q_2} \\
-  c \in S_q \openplan {q_1}{q_2} = H_2(q) \\
-  d \in S_r \openplan {q_1}{q_2} = H_2(r)
-\end{gather*}
+\item The dual transport is computed as follows. If $q, r \in \openplan {q_1}{q_2}$ and
+\begin{equation*}
+  c_{12} \in S_q \openplan {q_1}{q_2} = H_2(q) \ , \quad 
+  d_{12} \in S_r \openplan {q_1}{q_2} = H_2(r) \ ,
+\end{equation*}
 then
 \begin{equation*}
 \scalarat r {\mtransport q r c} d = \expectat q {cd} = \scalarat q c {d - \hajekof q d}
@@ -492,9 +468,9 @@ then
 \begin{equation*}
  \openplan {q_1}{q_2} \times  \openplan {q_1}{q_2} \ni (q,r) \mapsto \frac r q - 1
 \end{equation*}
-\item The e-geodesic from $q$ in the direction $d$ is the solution of
+\item The e-geodesic from $q$ in the direction $c$ is the solution of
 \begin{equation*}
-\velocity q(t) = (I - \hajekof{q(t)})d \ .
+\velocity q(t) = (I - \hajekof{q(t)})c \ .
 \end{equation*}
 \item A solution of this equation seems to require a solution of the Hajek projection.
 \end{itemize}
@@ -503,12 +479,12 @@ then
 
 \begin{frame}[plain,allowframebreaks]\small\frametitle{Gradient flow of the OT problem}
 
-\begin{itemize}
-    \item 
 Let us discuss the \emph{Optimal Transport OT} problem in the framework of the affine statistical bundle.
-\item $c \colon \Omega_1 \times \Omega_2 \to \reals$ be a cost function and the expected cost function as a function of the probability function is
+
+\begin{itemize}
+\item $c \colon \Omega_1 \times \Omega_2 \to \reals$ is the cost function and the expected cost function is
 \begin{equation*}
-  C \colon \maxexpat {\Omega_1 \times \Omega_2} \ni q \mapsto \expectat q c
+  C \colon \opensimplexon {\Omega_1 \times \Omega_2} \ni q \mapsto \expectat q c \ .
 \end{equation*}
 \item The function $q \mapsto C(q)$ restricted to the open transport model $\openplan{q_1}{q_2}$ has gradient in $S\openplan{q_1}{q_2}$ given by
 \begin{equation*}
@@ -533,6 +509,44 @@ then $c$ equals the sum of two functions in one variable on the support of $\hat
 \item
 We expect any solution $t \mapsto q(t)$ of the gradient flow equation to converge to a plan $\bar q = \lim_{t \to \infty} q(t) \in \Pi(q_1,q_2)$ such that $\expectat {\bar q} c$ is the value of the Kantorovich optimal transport problem. The form of the gradient is compatible with the classical result in OT.
 \end{itemize}
+\end{frame}
+
+\end{document} % Appendix follows
+
+\begin{frame}[plain]
+
+    \huge APPENDIX
+    
+  \end{frame}
+
+  \begin{frame}[plain,allowframebreaks]\small\frametitle{Kantorovich optimal transport}
+\begin{itemize}
+    \item Given the \emph{cost} $c \colon \Omega_1 \times \Omega_2 \to \reals$, Kantorovich looks for the transport plan with minimal expected cost
+    \begin{equation*}
+        \inf \setof{\sum_{x_1,x_2} c(x_1,x_2) q(x_1,x_2)}{q \in \Pi(q_1,q_2)}
+    \end{equation*}
+    \item It is a \emph{primal problem} in canonical form:
+       \begin{align*}
+      \text{Find} \quad c =& \inf \sum_{x_1,x_2} c(x_1,x_2) q(x_1,x_2) \\
+      \text{Subject to} \quad &\sum_x A(y;x_1,x_2) q(x_1,x_2) = (q_1 \cup q_2)(y) \\
+      &q(x_1,x_2) \geq 0 \ .
+    \end{align*}
+
+    \item The \emph{dual problem} in standard form is
+\begin{align*}
+      \text{Find} \quad \beta =& \sup \left(\sum_{y_1\in X_1}q_1(y_1) \lambda_1(y_1) + \sum_{y_2 \in X_2} q_2(y_2) \lambda_2(y_2)\right) \\
+      \text{Subject to} \quad &\lambda_1(x_1) + \lambda_2(x_2) \leq c(x_1,x_2) \ .    \end{align*}
+
+    \item There exists a feasible transport plan, and the set of plans is compact. It follows that the full strong duality theorem holds. Let $\bar q$, $\bar \lambda$ be the optimal plan and dual plan. The equality of values gives
+    \begin{equation*}
+    \sum_{x_1,x_2} c(x_1,x_2)\bar q(x_1,x_2) = \sum_{x_1,x_2} \left(\bar \lambda_1(x_1) + \bar \lambda_2(x_2)\right) \bar q(x_1,x_2) 
+    \end{equation*}
+    \item Finally, the inequality $c \geq \lambda_1 \oplus \lambda _2$ implies
+    \begin{equation*}
+        c(x_1,x_2)=\bar \lambda_1(x_1) + \bar \lambda_2(x_2) \quad \text{provided $\bar q(x_1,x_2) \neq 0$}
+    \end{equation*}
+\end{itemize}
+    
 \end{frame}
 
 \end{document}
